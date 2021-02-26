@@ -3,6 +3,8 @@
 target
 out
 logs
+*.iml
+
 
 # Compiled class file
 *.class

@@ -4,12 +4,12 @@
 
     <sql id="userSelect">
         user.id,
-        user.user_name,
-        user.pass_word,
+        user.username as userName,
+        user.password as passWord,
         user.phone,
         user.email,
-        user.create_time,
-        user.update_time
+        user.created as createTime,
+        user.updated as updateTime
     </sql>
 
     <select id="selectUserByParams" resultType="User">
@@ -22,7 +22,7 @@
                 AND user.id =  #{id}
             </if>
             <if test="userName != null and userName != ''">
-                AND user.user_name =  #{userName}
+                AND user.username =  #{userName}
             </if>
             <if test="email != null and email != ''">
                 AND user.email =  #{email}
@@ -33,13 +33,31 @@
         </where>
     </select>
 
+    <select id="selectByUserLike" resultType="User">
+        SELECT
+            <include refid="userSelect" />
+        FROM
+            tb_user AS user
+        <where>
+            <if test="userName != null and userName != ''">
+                AND user.username LIKE CONCAT ('%', #{userName}, '%')
+            </if>
+            <if test="email != null and email != ''">
+                AND user.email LIKE CONCAT ('%', #{email}, '%')
+            </if>
+            <if test="phone != null and phone != ''">
+                AND user.phone LIKE CONCAT ('%', #{phone}, '%')
+            </if>
+        </where>
+    </select>
+
     <select id="selectUserByUserNameLike" resultType="User">
         SELECT
             <include refid="userSelect" />
         FROM
             tb_user AS user
         <where>
-            AND user_name LIKE CONCAT ('%', #{userNameLike}, '%')
+            AND username LIKE CONCAT ('%', #{userNameLike}, '%')
         </where>
     </select>
 
@@ -53,12 +71,12 @@
     <insert id="insert">
         INSERT INTO tb_user  (
             id,
-            user_name,
-            pass_word,
+            username,
+            password,
             phone,
             email,
-            create_time,
-            update_time
+            created,
+            updated
         )
         VALUES (
             #{id},
@@ -80,11 +98,11 @@
         UPDATE
             tb_user
         SET
-            user_name = #{userName},
-            pass_word = #{passWord},
+            username = #{userName},
+            password = #{passWord},
             phone = #{phone},
             email = #{email},
-            update_time = now()
+            updated = now()
         WHERE id = #{id}
     </update>
 

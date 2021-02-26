@@ -9,6 +9,9 @@ public interface UserDao {
     /**按条件查询用户信息**/
     User selectUserByParams(User params);
 
+    /**根据用户信息进行模糊查询**/
+    List<User> selectByUserLike(User params);
+
     /**按条件查询用户信息**/
     List<User> selectUserByUserNameLike(String userNameLike);
 

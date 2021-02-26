@@ -40,7 +40,7 @@ public class UserServiceTest {
 
     @Test
     public void selectUserByEmail() {
-        User user = userService.selectUserByEmail("aa@a");
+        User user = userService.selectUserByEmail("admin@qq.com");
         logger.info("selectUserByEmail : 用户名 {}",user.getUserName());
     }
 

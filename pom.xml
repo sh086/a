@@ -56,14 +56,21 @@
         </dependency>
         <!--引入DataBase End-->
 
-        <!-- 工具类 -->
+        <!-- 工具类 Start-->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.5</version>
         </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+            <version>1.16.18</version>
+        </dependency>
+        <!-- 工具类 End -->
 
-        <!--JunitTEST Start -->
+        <!--Junit TEST Start -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
@@ -74,7 +81,7 @@
             <artifactId>junit</artifactId>
             <version>4.12</version>
         </dependency>
-        <!--JunitTEST End-->
+        <!--Junit TEST End-->
 
         <!-- Log Begin -->
         <dependency>
@@ -101,14 +108,19 @@
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
-
-        <!--引入lombok包-->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <scope>provided</scope>
-            <version>1.16.18</version>
-        </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

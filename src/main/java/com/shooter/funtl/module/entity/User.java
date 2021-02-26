@@ -2,7 +2,7 @@ package com.shooter.funtl.module.entity;
 
 import lombok.Data;
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @Data
 public class User implements Serializable{
@@ -17,8 +17,8 @@ public class User implements Serializable{
 
     private Long phone;
 
-    private LocalDateTime createTime;
+    private Date createTime;
 
-    private LocalDateTime updateTime;
+    private Date updateTime;
 
 }
