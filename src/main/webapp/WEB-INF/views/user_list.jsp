@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sys" tagdir="/WEB-INF/tags/sys" %>
 
 <!DOCTYPE html>
 <head>
@@ -42,65 +43,69 @@
                         </div>
                     </c:if>
 
+                    <div class="box box-info box-info-search" style="display: none">
+                        <div class="box-header">
+                            <h3 class="box-title">高级搜索</h3>
+                        </div>
+                        <form:form cssClass="form-horizontal" action="/user/search" method="post" modelAttribute="user">
+                           <div class="box-body">
+                               <div class="row">
+                                   <div class="col-xs-12 col-sm-3">
+                                       <div class="form-group">
+                                           <label for="userName" class="col-sm-4 control-label">姓名</label>
+                                           <div class="col-sm-8">
+                                               <form:input class="form-control" path="userName"  placeholder="请输入用户姓名"/>
+                                           </div>
+                                       </div>
+                                   </div>
+                                   <div class="col-xs-12 col-sm-3">
+                                       <div class="form-group">
+                                           <label for="phone" class="col-sm-4 control-label">电话</label>
+                                           <div class="col-sm-8">
+                                               <form:input class="form-control" path="phone"  placeholder="请输入电话"/>
+                                           </div>
+                                       </div>
+                                   </div>
+                                   <div class="col-xs-12 col-sm-3">
+                                       <div class="form-group">
+                                           <label for="email" class="col-sm-4 control-label">邮箱</label>
+                                           <div class="col-sm-8">
+                                               <form:input class="form-control" path="email"  placeholder="请输入邮箱"/>
+                                           </div>
+                                       </div>
+                                   </div>
+                               </div>
+                               <div class="box-footer">
+                                   <button type="submit" class="btn btn-info pull-right">搜索</button>
+                                   <button type="reset" class="btn btn-default pull-right">重置</button>
+                               </div>
+                           </div>
+                        </form:form>
+                    </div>
+
                     <div class="box">
                         <div class="box-header">
                             <h3 class="box-title">用户列表</h3>
-
                             <div class="row" style="padding-top: 10px">
-                                <div class="col-xs-12">
+                                <div class="col-xs-12" >
                                     <a href="/user/form" type="button" class="btn btn-sm btn-default"><i class="fa fa-plus"></i> 新增</a> &nbsp&nbsp&nbsp&nbsp
-                                    <a href="#" type="button" class="btn btn-sm btn-default"><i class="fa fa-trash-o"></i> 删除</a>&nbsp&nbsp&nbsp&nbsp
+                                    <button onclick="APP.deleteMulti()" type="button" class="btn btn-sm btn-default"><i class="fa fa-trash-o"></i> 删除</button>&nbsp&nbsp&nbsp&nbsp
                                     <a href="#" type="button" class="btn btn-sm btn-default"><i class="fa fa-download"></i> 导入</a>&nbsp&nbsp&nbsp&nbsp
                                     <a href="#" type="button" class="btn btn-sm btn-default"><i class="fa fa-upload"></i> 导出</a>&nbsp&nbsp&nbsp&nbsp
+                                    <button type="button" class="btn btn-sm btn-primary"
+                                            onclick="$('.box-info-search').css('display') == 'none' ?
+                                                    $('.box-info-search').show('fast') : $('.box-info-search').hide('fast')">
+                                        <i class="fa fa-search"></i> 搜索
+                                    </button>
                                 </div>
                             </div>
-
-                            <div class="row" style="margin-top: 20px">
-                                <form:form cssClass="form-horizontal" action="/user/search" method="post" modelAttribute="user">
-                                    <div class="row">
-                                        <div class="col-xs-3">
-                                            <div class="form-group">
-                                                <label for="userName" class="col-sm-3 control-label">姓名</label>
-                                                <div class="col-sm-8">
-                                                    <form:input class="form-control" path="userName"  placeholder="请输入用户姓名"/>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-3">
-                                            <div class="form-group">
-                                                <label for="phone" class="col-sm-3 control-label">电话</label>
-                                                <div class="col-sm-8">
-                                                    <form:input class="form-control" path="phone"  placeholder="请输入电话"/>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-3">
-                                            <div class="form-group">
-                                                <label for="email" class="col-sm-3 control-label">邮箱</label>
-                                                <div class="col-sm-8">
-                                                    <form:input class="form-control" path="email"  placeholder="请输入邮箱"/>
-                                                </div>
-                                            </div>
-                                        </div>
-                                       <div class="row" style="padding-right: 150px">
-                                           <div class="col-xs-11">
-                                                <button type="submit" class="btn btn-info pull-right">搜索</button>
-                                           </div>
-                                           <div class="col-xs-1">
-                                               <button type="reset" class="btn btn-block pull-right">重置</button>
-                                           </div>
-                                       </div>
-                                    </div>
-                                </form:form>
-
-                            </div>
-
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body table-responsive no-padding">
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
+                                        <th><input type="checkbox" class="minimal checkbox-master" /></th>
                                         <th>编号</th>
                                         <th>用户名</th>
                                         <th>手机号</th>
@@ -112,6 +117,7 @@
                                 <tbody>
                                     <c:forEach items="${users}" var="user">
                                         <tr>
+                                            <td><input id="${user.id}" type="checkbox" class="minimal" /></td>
                                             <td>${user.id}</td>
                                             <td>${user.userName}</td>
                                             <td>${user.phone}</td>
@@ -136,8 +142,10 @@
     </div>
 
     <jsp:include page="../includes/copyright.jsp"/>
+    <sys:modal/>
 
 </div>
 <jsp:include page="../includes/foot.jsp"/>
+
 </body>
 </html>

@@ -48,6 +48,7 @@ var Validate = function () {
     }
 }();
 
+//JS引用时执行
 $(function () {
     Validate.init();
 });

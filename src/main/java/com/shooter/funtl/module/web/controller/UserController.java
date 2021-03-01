@@ -1,5 +1,6 @@
 package com.shooter.funtl.module.web.controller;
 
+import com.shooter.funtl.common.dto.BaseResult;
 import com.shooter.funtl.module.entity.User;
 import com.shooter.funtl.module.service.UserService;
 import lombok.val;
@@ -9,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
@@ -80,6 +82,15 @@ public class UserController {
         val userResult = userService.selectByUserLike(user);
         model.addAttribute("users",userResult);
         return "user_list";
+    }
+
+    /**
+     * 删除用户信息
+     * */
+    @RequestMapping(value = "delete",method = RequestMethod.POST)
+    @ResponseBody
+    public BaseResult delete(String ids) {
+        return BaseResult.success("曹操");
     }
 
 }

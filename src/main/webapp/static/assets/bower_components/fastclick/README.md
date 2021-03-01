@@ -16,7 +16,7 @@ According to [Google](https://developers.google.com/mobile/articles/fast_buttons
 
 ## Compatibility ##
 
-The library has been deployed as part of the [FT Web App](http://app.ft.com/) and is tried and tested on the following mobile browsers:
+The library has been deployed as part of the [FT Web Icheck](http://app.ft.com/) and is tried and tested on the following mobile browsers:
 
 * Mobile Safari on iOS 3 and upwards
 * Chrome on iOS 5 and upwards
