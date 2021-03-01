@@ -4,6 +4,7 @@ import com.shooter.funtl.common.dto.BaseResult;
 import com.shooter.funtl.module.entity.User;
 import com.shooter.funtl.module.service.UserService;
 import lombok.val;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -48,7 +49,7 @@ public class UserController {
      * 跳转用户表单页面
      * */
     @RequestMapping(value = "form",method = RequestMethod.GET)
-    public String form(Model model){
+    public String form(){
         return "user_form";
     }
 
@@ -90,7 +91,13 @@ public class UserController {
     @RequestMapping(value = "delete",method = RequestMethod.POST)
     @ResponseBody
     public BaseResult delete(String ids) {
-        return BaseResult.success("曹操");
+        if(StringUtils.isBlank(ids)){
+            return BaseResult.fail("编号不能为空");
+        }
+        val idArray = ids.split(",");
+        userService.deleteByIds(idArray);
+
+        return BaseResult.success("删除数据成功");
     }
 
 }

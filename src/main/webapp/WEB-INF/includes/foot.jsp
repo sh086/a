@@ -31,5 +31,6 @@
 <script src="/static/assets/app/validation.js"></script>
 <script src="/static/assets/app/icheck.js"></script>
 <script src="/static/assets/app/app.js"></script>
+<script src="/static/assets/app/request.js"></script>
 <!-- iCheck 1.0.1 -->
 <script src="/static/assets/plugins/iCheck/icheck.min.js"></script>

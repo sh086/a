@@ -4,13 +4,8 @@
 <script>
     var Modal = function (){
         return{
-            show: function () {
-                $("#modal-default").modal("show")
-            },
-            setMessage: function (message){
-                $("#modal-message").html(message)
-            },
-            fail: function (message){
+            showFail: function (message){
+                $("#modal-title").html("操作失败");
                 $("#btnModalOk").unbind("click")
                 $("#btnModalOk").bind("click",function (){
                     $("#modal-default").modal("hide")
@@ -18,19 +13,36 @@
                 $("#modal-message").html(message)
                 $("#modal-default").modal("show")
             },
-            bindCancel: function (){
+            showSuccess: function (message){
+                $("#modal-title").html("操作成功");
                 $("#btnModalOk").unbind("click")
                 $("#btnModalOk").bind("click",function (){
-                    $("#modal-default").modal("hide")
+                    $("#modal-default").modal("hide");
+                    window.location.reload();
                 })
+                $("#modal-message").html(message)
+                $("#modal-default").modal("show")
+
             },
-            bingOk: function (url,json){
+            bindCancel: function (message){
+                $("#modal-title").html("提示");
+                $("#modal-message").html(message);
+                $("#btnModalOk").unbind("click");
+                $("#btnModalOk").bind("click",function (){
+                    $("#modal-default").modal("hide")
+                });
+                $("#modal-default").modal("show");
+            },
+            bindOk: function (url,json,message){
+                $("#modal-title").html("提示");
+                $("#modal-message").html(message);
                 $("#btnModalOk").bind("click",function (){
                     setTimeout(function () {
-                       Request.post(url,json);
+                        Request.post(url,json);
                     },500);
-                })
-            }
+                });
+                $("#modal-default").modal("show");
+            },
         }
     }();
 </script>
@@ -41,7 +53,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">提示</h4>
+                <h4 id="modal-title" class="modal-title"></h4>
             </div>
             <div class="modal-body">
                 <p id="modal-message"></p>

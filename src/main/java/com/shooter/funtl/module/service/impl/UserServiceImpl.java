@@ -145,4 +145,11 @@ public class UserServiceImpl implements UserService {
     public List<User> selectByUserLike(User user) {
         return userDao.selectByUserLike(user);
     }
+
+    @Override
+    public void deleteByIds(String[] ids) {
+        if(ids != null && ids.length > 0){
+            userDao.deleteByIds(ids);
+        }
+    }
 }

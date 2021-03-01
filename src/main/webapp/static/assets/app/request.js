@@ -5,11 +5,12 @@ var Request = function () {
                 "url" : url,
                 "type" : "POST",
                 "data" : json,
-                "dataType" : function (data) {
+                "dataType" : "JSON",
+                "success" : function (data) {
                     if(data.status === true){
-                        window.location.reload();
+                       Modal.showSuccess(data.messages);
                     }else {
-                        Modal.fail(data.message);
+                       Modal.showFail(data.messages);
                     }
                 }
             })
@@ -21,11 +22,12 @@ var Request = function () {
                 //设置同步执行，默认是异步
                 "async" :false,
                 "data" : json,
-                "dataType" : function (data) {
+                "dataType" : "JSON",
+                "success" : function (data) {
                     if(data.status === true){
-                        window.location.reload();
+                        Modal.showSuccess(data.messages);
                     }else {
-                        Modal.fail(data.message);
+                        Modal.showFail(data.messages);
                     }
                 }
             })

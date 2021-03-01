@@ -27,6 +27,8 @@ public interface UserService {
 
     void deleteById(Long id);
 
+    void deleteByIds(String[] ids);
+
     User login(String email, String passWord);
 
 }

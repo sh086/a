@@ -91,7 +91,9 @@
 
 
     <delete id="deleteById">
-        DELETE FROM tb_user WHERE id = #{id}
+       <if test="id != null and id != ''">
+          DELETE FROM tb_user WHERE id = #{id}
+       </if>
     </delete>
 
     <update id="updateById">
@@ -105,5 +107,14 @@
             updated = now()
         WHERE id = #{id}
     </update>
+
+    <delete id="deleteByIds">
+        <if test="array != null and array.length > 0">
+            DELETE FROM tb_user WHERE id IN
+            <foreach collection="array" open="(" close=")" separator="," item="id">
+                #{id}
+            </foreach>
+        </if>
+    </delete>
 
 </mapper>

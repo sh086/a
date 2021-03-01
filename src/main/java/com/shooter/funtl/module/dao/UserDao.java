@@ -27,4 +27,7 @@ public interface UserDao {
     /**删除用户信息**/
     void deleteById(Long id);
 
+    /**删除用户信息**/
+    void deleteByIds(String[] ids);
+
 }
