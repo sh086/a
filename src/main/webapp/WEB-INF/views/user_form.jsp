@@ -50,6 +50,7 @@
                         <!-- form start -->
                         <form:form id="inputForm" class="form-horizontal" action="/user/save" method="post" modelAttribute="user">
                             <div class="box-body">
+                                <form:hidden path="id"/>
                                 <div class="form-group">
                                     <label for="email" class="col-sm-2 control-label">邮箱</label>
 
@@ -61,7 +62,7 @@
                                     <label for="passWord" class="col-sm-2 control-label">密码</label>
 
                                     <div class="col-sm-10">
-                                        <form:password class="form-control required" path="passWord"  placeholder="请输入密码"/>
+                                        <form:password class="form-control ${user.id == null ? 'required' : ''}" path="passWord"  placeholder="请输入密码"/>
                                     </div>
                                 </div>
                                 <div class="form-group">

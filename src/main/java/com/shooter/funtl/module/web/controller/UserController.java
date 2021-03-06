@@ -52,6 +52,14 @@ public class UserController {
     }
 
     /**
+     * 跳转用户明细表单页面
+     * */
+    @RequestMapping(value = "detail",method = RequestMethod.GET)
+    public String detail(User user){
+        return "user_detail";
+    }
+
+    /**
      * 保存用户表单
      * */
     @RequestMapping(value = "save",method = RequestMethod.POST)
@@ -85,7 +93,7 @@ public class UserController {
     /**
      * 批量删除用户信息
      * */
-    @RequestMapping(value = "deleteMulti",method = RequestMethod.POST)
+    @RequestMapping(value = "delete",method = RequestMethod.POST)
     @ResponseBody
     public BaseResult deleteMulti(String ids) {
         if(StringUtils.isBlank(ids)){

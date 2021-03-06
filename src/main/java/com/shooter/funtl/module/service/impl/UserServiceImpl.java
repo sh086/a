@@ -113,7 +113,7 @@ public class UserServiceImpl implements UserService {
         }else {
             userDao.insert(user);
         }
-        return BaseResult.success("用户信息保存成功！");
+        return BaseResult.success("操作成功！");
     }
 
     @Override
@@ -147,12 +147,12 @@ public class UserServiceImpl implements UserService {
             return BaseResult.fail("邮箱格式不正确，请重新输入！");
         }
         val emailRecord = selectUserByEmail(user.getEmail());
-        if(emailRecord != null){
+        if(emailRecord != null && !emailRecord.getId().equals(user.getId())){
             return BaseResult.fail("该邮箱已经存在，请重新输入！");
         }
 
         //校验密码
-        if(StringUtils.isBlank(user.getPassWord())){
+        if(user.getId() == null && StringUtils.isBlank(user.getPassWord())){
             return BaseResult.fail("密码不能为空，请重新输入！");
         }
 
@@ -161,7 +161,7 @@ public class UserServiceImpl implements UserService {
             return BaseResult.fail("姓名不能为空，请重新输入！");
         }
         val nameRecord = selectUserByName(user.getUserName());
-        if(nameRecord != null){
+        if(nameRecord != null && !nameRecord.getId().equals(user.getId())){
             return BaseResult.fail("该姓名已经存在，请重新输入！");
         }
 

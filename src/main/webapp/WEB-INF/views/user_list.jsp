@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
 
 <!DOCTYPE html>
@@ -74,7 +75,8 @@
                                 </div>
                             </div>
                             <div class="box-footer">
-                                <button type="submit" onclick="User.handlerPageSearch()" class="btn btn-info pull-right">搜索</button>
+                                <button onclick="User.handlerPageSearch()" class="btn btn-info pull-right">搜索</button>
+                                <button onclick="User.handlerRestSearch()"  class="btn btn-default pull-right">重置</button>
                             </div>
                         </div>
                     </div>
@@ -85,7 +87,7 @@
                         </div>
                         <div class="box-body">
                             <a href="/user/form" type="button" class="btn btn-sm btn-default"><i class="fa fa-plus"></i> 新增</a> &nbsp&nbsp&nbsp&nbsp
-                            <button onclick="User.deleteMulti()" type="button" class="btn btn-sm btn-default"><i class="fa fa-trash-o"></i> 删除</button>&nbsp&nbsp&nbsp&nbsp
+                            <button onclick="User.handlerDeleteMulti()" type="button" class="btn btn-sm btn-default"><i class="fa fa-trash-o"></i> 删除</button>&nbsp&nbsp&nbsp&nbsp
                             <a href="#" type="button" class="btn btn-sm btn-default"><i class="fa fa-download"></i> 导入</a>&nbsp&nbsp&nbsp&nbsp
                             <a href="#" type="button" class="btn btn-sm btn-default"><i class="fa fa-upload"></i> 导出</a>&nbsp&nbsp&nbsp&nbsp
                             <button type="button" class="btn btn-sm btn-primary"
@@ -120,32 +122,14 @@
 
     <jsp:include page="../includes/copyright.jsp"/>
     <tags:modal/>
+    <tags:detail/>
 
 </div>
 <jsp:include page="../includes/foot.jsp"/>
 
 <script>
-    var _columns = [
-        {
-            "data": function (row, type, val, meta) {
-                return '<input id="' + row.id + '" type="checkbox" class="minimal" />';
-            }
-        },
-        {"data": "id"},
-        {"data": "userName"},
-        {"data": "phone"},
-        {"data": "email"},
-        {"data": "updateTime"},
-        {
-            "data": function (row, type, val, meta) {
-                return '<button type="button" class="btn btn-sm btn-default"><i class="fa fa-search"></i> 查看</button>&nbsp;&nbsp;&nbsp;' +
-                    '<button type="button" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i> 编辑</button>&nbsp;&nbsp;&nbsp;' +
-                    '<button type="button" class="btn btn-sm btn-danger"><i class="fa fa-trash-o"></i> 删除</button>';
-            }
-        }
-    ];
-    User.handlerPage(_columns);
-
+    //表格初始化
+    User.handlerPageInit();
 </script>
 
 </body>
