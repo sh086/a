@@ -2,8 +2,8 @@ var DataTableUtils = function () {
 
     var _dataTable;
 
-    var handlerDataTableInit = function (url, columns) {
-        return $("#dataTable").DataTable({
+    var handlerDataTableInit = function (tableId,url, columns) {
+        return $("#" + tableId).DataTable({
             "paging": true,
             "info": true,
             "lengthChange": false,
@@ -53,16 +53,16 @@ var DataTableUtils = function () {
 
     return {
         /**
-         * 表格分页
+         * 表格初始化
          */
-        page: function (url, columns) {
-            _dataTable = handlerDataTableInit(url, columns);
+        dataTableInit: function (tableId,url, columns) {
+            _dataTable = handlerDataTableInit(tableId,url, columns);
             return _dataTable;
         },
         /**
          * 分页查询
          */
-        search: function (param) {
+        dataTableSearch: function (param) {
             handlerDataTableSearch(param);
         }
     }

@@ -29,7 +29,7 @@ var User = function () {
     /**
      * 表格分页
      */
-    var handlerPageInit = function () {
+    var handlerPageInit = function (tableId) {
         var _columns = [
             {
                 "data": function (row, type, val, meta) {
@@ -40,7 +40,9 @@ var User = function () {
             {"data": "userName"},
             {"data": "phone"},
             {"data": "email"},
-            {"data": "updateTime"},
+            {"data": function (row, type, val, meta) {
+                    return DateTime.format(row.updateTime,"yyyy-MM-dd HH:mm:ss");
+                }},
             {
                 "data": function (row, type, val, meta) {
                     return '<button onclick="User.handlerShowDetail('+row.id+')" class="btn btn-sm btn-default"><i class="fa fa-search"></i> 查看</button>&nbsp;&nbsp;&nbsp;' +
@@ -49,7 +51,7 @@ var User = function () {
                 }
             }
         ];
-        DataTableUtils.page(Api.page, _columns)
+        DataTableUtils.dataTableInit(tableId,Api.page, _columns)
     };
 
     /**
@@ -64,7 +66,7 @@ var User = function () {
             "phone": phone,
             "email": email
         };
-        DataTableUtils.search(param);
+        DataTableUtils.dataTableSearch(param);
     }
 
     /**
@@ -95,8 +97,8 @@ var User = function () {
         },
 
         /** 表格初始化 */
-        handlerPageInit: function () {
-            handlerPageInit();
+        handlerPageInit: function (tableId) {
+            handlerPageInit(tableId);
         },
 
         /** 分页查询 */

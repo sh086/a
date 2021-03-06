@@ -20,3 +20,5 @@ folder instead of downloading all of them to reduce the load. -->
 <link rel="stylesheet" href="/static/assets/plugins/iCheck/all.css">
 <!-- DataTables -->
 <link rel="stylesheet" href="/static/assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+<!-- TreeTables -->
+<link rel="stylesheet" href="/static/assets/plugins/treeTable/themes/vsStyle/treeTable.css">

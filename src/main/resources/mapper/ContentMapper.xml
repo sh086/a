@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shooter.funtl.module.dao.ContentDao">
+
+    <sql id="contentSelect">
+        content.id,
+        content.category_id as categoryId,
+        content.title,
+        content.url,
+        content.pic,
+        content.pic2,
+        content.content,
+        content.sub_title as subTitle,
+        content.title_desc as titleDesc,
+        content.created as createTime,
+        content.updated as updateTime
+
+    </sql>
+
+    <select id="selectAll" resultType="Content">
+        SELECT
+        <include refid="contentSelect" />
+        FROM
+        tb_content AS content
+    </select>
+
+
+</mapper>
