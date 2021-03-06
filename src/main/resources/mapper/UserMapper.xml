@@ -51,21 +51,48 @@
         </where>
     </select>
 
-    <select id="selectUserByUserNameLike" resultType="User">
+    <select id="page" resultType="User" parameterType="java.util.Map">
         SELECT
             <include refid="userSelect" />
         FROM
-            tb_user AS user
+           tb_user AS user
         <where>
-            AND username LIKE CONCAT ('%', #{userNameLike}, '%')
+            <if test="user.userName != null and user.userName != ''">
+                AND user.username LIKE CONCAT ('%', #{user.userName}, '%')
+            </if>
+            <if test="user.email != null and user.email != ''">
+                AND user.email LIKE CONCAT ('%', #{user.email}, '%')
+            </if>
+            <if test="user.phone != null and user.phone != ''">
+                AND user.phone LIKE CONCAT ('%', #{user.phone}, '%')
+            </if>
+        </where>
+        LIMIT #{start},#{length}
+    </select>
+
+    <select id="countUserLike" resultType="java.lang.Integer">
+        SELECT
+          count(1)
+        FROM
+          tb_user AS user
+        <where>
+            <if test="userName != null and userName != ''">
+                AND user.username LIKE CONCAT ('%', #{userName}, '%')
+            </if>
+            <if test="email != null and email != ''">
+                AND user.email LIKE CONCAT ('%', #{email}, '%')
+            </if>
+            <if test="phone != null and phone != ''">
+                AND user.phone LIKE CONCAT ('%', #{phone}, '%')
+            </if>
         </where>
     </select>
 
     <select id="selectUserAll" resultType="User">
         SELECT
-            <include refid="userSelect" />
+        <include refid="userSelect" />
         FROM
-            tb_user AS user
+        tb_user AS user
     </select>
 
     <insert id="insert">

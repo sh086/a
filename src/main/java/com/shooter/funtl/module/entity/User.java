@@ -1,5 +1,6 @@
 package com.shooter.funtl.module.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import java.io.Serializable;
 import java.util.Date;
@@ -11,6 +12,7 @@ public class User implements Serializable{
 
     private String userName;
 
+    @JsonIgnore
     private String passWord;
 
     private String email;

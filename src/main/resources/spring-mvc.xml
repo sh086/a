@@ -40,7 +40,7 @@
         <!-- 权限拦截器-->
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
-            <bean class="com.shooter.funtl.module.web.interceptor.PermissionIterceptorterceptor"/>
+            <bean class="com.shooter.funtl.module.web.interceptor.PermissionInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
 

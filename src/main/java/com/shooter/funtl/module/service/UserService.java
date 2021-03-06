@@ -1,11 +1,15 @@
 package com.shooter.funtl.module.service;
 
-import com.shooter.funtl.common.dto.BaseResult;
+import com.shooter.funtl.common.modal.BaseResult;
+import com.shooter.funtl.common.modal.PageInfo;
 import com.shooter.funtl.module.entity.User;
+import com.shooter.funtl.module.modal.UserSearchModal;
 
 import java.util.List;
 
 public interface UserService {
+
+    PageInfo<User> page(UserSearchModal modal);
 
     List<User> selectByUserLike(User user);
 

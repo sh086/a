@@ -1,9 +1,11 @@
 package com.shooter.funtl.module.service.impl;
 
-import com.shooter.funtl.common.dto.BaseResult;
+import com.shooter.funtl.common.modal.BaseResult;
+import com.shooter.funtl.common.modal.PageInfo;
 import com.shooter.funtl.common.utils.RegexpUtils;
 import com.shooter.funtl.module.dao.UserDao;
 import com.shooter.funtl.module.entity.User;
+import com.shooter.funtl.module.modal.UserSearchModal;
 import com.shooter.funtl.module.service.UserService;
 import lombok.val;
 import org.apache.commons.lang3.StringUtils;
@@ -11,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -18,6 +21,35 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserDao userDao;
+
+    @Override
+    public PageInfo<User> page(UserSearchModal modal) {
+        //设置查询参数
+        val user = new User();
+        user.setPhone(modal.getPhone());
+        user.setEmail(modal.getEmail());
+        user.setUserName(modal.getUserName());
+        //设置分页查询参数
+        val map = new HashMap<String,Object>();
+        map.put("length",modal.getLength());
+        map.put("start",modal.getStart());
+        map.put("user",user);
+        //查询
+        val data = userDao.page(map);
+        val count = userDao.countUserLike(user);
+        val page = new PageInfo<User>();
+        //Page对象
+        page.setData(data);
+        page.setRecordsFiltered(count);
+        page.setRecordsTotal(count);
+        page.setDraw(modal.getDraw());
+        return page;
+    }
+
+    @Override
+    public List<User> selectByUserLike(User user) {
+        return userDao.selectByUserLike(user);
+    }
 
     @Override
     public User login(String email, String passWord) {
@@ -48,7 +80,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> selectUserByNameLike(String userNameLike) {
-        return userDao.selectUserByUserNameLike(userNameLike);
+        val user = new User();
+        user.setUserName(userNameLike);
+        return userDao.selectByUserLike(user);
     }
 
     @Override
@@ -139,11 +173,6 @@ public class UserServiceImpl implements UserService {
         }
 
         return null;
-    }
-
-    @Override
-    public List<User> selectByUserLike(User user) {
-        return userDao.selectByUserLike(user);
     }
 
     @Override

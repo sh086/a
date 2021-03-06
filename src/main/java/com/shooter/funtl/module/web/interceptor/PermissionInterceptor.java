@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * 权限拦截器
  * */
-public class PermissionIterceptorterceptor implements HandlerInterceptor {
+public class PermissionInterceptor implements HandlerInterceptor {
 
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
 

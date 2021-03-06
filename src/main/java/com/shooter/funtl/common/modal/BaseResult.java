@@ -1,4 +1,4 @@
-package com.shooter.funtl.common.dto;
+package com.shooter.funtl.common.modal;
 
 import lombok.Data;
 import lombok.val;

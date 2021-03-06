@@ -27,10 +27,16 @@
 <script src="/static/assets/plugins/jquery-validation/js/localization/messages_zh.min.js"></script>
 <!-- AdminLTE Icheck -->
 <script src="/static/assets/js/adminlte.min.js"></script>
-<!-- Icheck -->
-<script src="/static/assets/app/validation.js"></script>
-<script src="/static/assets/app/icheck.js"></script>
-<script src="/static/assets/app/app.js"></script>
-<script src="/static/assets/app/request.js"></script>
 <!-- iCheck 1.0.1 -->
 <script src="/static/assets/plugins/iCheck/icheck.min.js"></script>
+<!-- DataTables -->
+<script src="/static/assets/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="/static/assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+
+<!-- 自定义JS -->
+<script src="/static/app/utils/validation.js"></script>
+<script src="/static/app/utils/icheck.js"></script>
+<script src="/static/app/utils/request.js"></script>
+<script src="/static/app/utils/dataTable.js"></script>
+<script src="/static/app/services/user.js"></script>
+<script src="/static/app/constant/api.js"></script>

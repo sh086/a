@@ -1,17 +1,17 @@
 package com.shooter.funtl.module.web.controller;
 
-import com.shooter.funtl.common.dto.BaseResult;
+import com.shooter.funtl.common.modal.BaseResult;
+import com.shooter.funtl.common.modal.PageInfo;
 import com.shooter.funtl.module.entity.User;
+import com.shooter.funtl.module.modal.UserSearchModal;
 import com.shooter.funtl.module.service.UserService;
 import lombok.val;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
@@ -39,9 +39,7 @@ public class UserController {
      * 跳转用户列表页面
      * */
     @RequestMapping(value = "list",method = RequestMethod.GET)
-    public String list(Model model){
-        val users = userService.selectUserAll();
-        model.addAttribute("users",users);
+    public String list(){
         return "user_list";
     }
 
@@ -76,21 +74,20 @@ public class UserController {
     }
 
     /**
-     * 查询用户信息
+     * 分页查询用户信息
      * */
-    @RequestMapping(value = "search",method = RequestMethod.POST)
-    public String search(User user,Model model){
-        val userResult = userService.selectByUserLike(user);
-        model.addAttribute("users",userResult);
-        return "user_list";
+    @RequestMapping(value = "page",method = RequestMethod.GET)
+    @ResponseBody
+    public PageInfo<User> page(UserSearchModal modal){
+        return userService.page(modal);
     }
 
     /**
-     * 删除用户信息
+     * 批量删除用户信息
      * */
-    @RequestMapping(value = "delete",method = RequestMethod.POST)
+    @RequestMapping(value = "deleteMulti",method = RequestMethod.POST)
     @ResponseBody
-    public BaseResult delete(String ids) {
+    public BaseResult deleteMulti(String ids) {
         if(StringUtils.isBlank(ids)){
             return BaseResult.fail("编号不能为空");
         }
