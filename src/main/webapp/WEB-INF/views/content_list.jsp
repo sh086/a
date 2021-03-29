@@ -33,59 +33,15 @@
             <!-- /.row -->
             <div class="row">
                 <div class="col-xs-12">
-
-                    <div class="box box-info box-info-search" style="display: none">
-                        <div class="box-header">
-                            <h3 class="box-title">高级搜索</h3>
-                        </div>
-                        <div class="box-body">
-                            <div class="row form-horizontal" >
-                                <div class="col-xs-12 col-sm-3">
-                                    <div class="form-group">
-                                        <label for="userName" class="col-sm-4 control-label">姓名</label>
-                                        <div class="col-sm-8">
-                                            <input class="form-control" id="userName"  placeholder="请输入用户姓名"/>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-3">
-                                    <div class="form-group">
-                                        <label for="phone" class="col-sm-4 control-label">电话</label>
-                                        <div class="col-sm-8">
-                                            <input class="form-control" id="phone"  placeholder="请输入电话"/>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-3">
-                                    <div class="form-group">
-                                        <label for="email" class="col-sm-4 control-label">邮箱</label>
-                                        <div class="col-sm-8">
-                                            <input class="form-control" id="email"  placeholder="请输入邮箱"/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="box-footer">
-                                <button onclick="User.handlerPageSearch()" class="btn btn-info pull-right">搜索</button>
-                                <button onclick="User.handlerRestSearch()"  class="btn btn-default pull-right">重置</button>
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="box">
                         <div class="box-header">
                             <h3 class="box-title">内容列表</h3>
                         </div>
                         <div class="box-body">
-                            <a href="#" type="button" class="btn btn-sm btn-default"><i class="fa fa-plus"></i> 新增</a> &nbsp&nbsp&nbsp&nbsp
+                            <a href="/content/form" type="button" class="btn btn-sm btn-default"><i class="fa fa-plus"></i> 新增</a> &nbsp&nbsp&nbsp&nbsp
                             <button onclick="" type="button" class="btn btn-sm btn-default"><i class="fa fa-trash-o"></i> 删除</button>&nbsp&nbsp&nbsp&nbsp
                             <a href="#" type="button" class="btn btn-sm btn-default"><i class="fa fa-download"></i> 导入</a>&nbsp&nbsp&nbsp&nbsp
                             <a href="#" type="button" class="btn btn-sm btn-default"><i class="fa fa-upload"></i> 导出</a>&nbsp&nbsp&nbsp&nbsp
-                            <button type="button" class="btn btn-sm btn-primary"
-                                    onclick="$('.box-info-search').css('display') == 'none' ?
-                                                    $('.box-info-search').show('fast') : $('.box-info-search').hide('fast')">
-                                <i class="fa fa-search"></i> 搜索
-                            </button>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body table-responsive">

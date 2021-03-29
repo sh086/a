@@ -1,5 +1,7 @@
 <%@ tag pageEncoding="UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ attribute name="title" type="java.lang.String" required="false" description="模态框的标题" %>
+<%@ attribute name="message" type="java.lang.String" required="false" description="模态框的消息" %>
 
 <script>
     var Modal = function (){
@@ -53,10 +55,10 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span></button>
-                <h4 id="modal-title" class="modal-title"></h4>
+                <h4 id="modal-title" class="modal-title">${title}</h4>
             </div>
             <div class="modal-body">
-                <p id="modal-message"></p>
+                <p id="modal-message">${message}</p>
             </div>
             <div class="modal-footer">
                 <button id="btnModalOk" type="button" class="btn btn-primary">确认</button>
